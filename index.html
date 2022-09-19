@@ -1,0 +1,48 @@
+<!-- in http we have one way connection the client give the request and the server give the respose but vice versa is not possible -->
+<!-- with the help of socket.io we can make two way server i.e the server can also push request to the client -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- to connect server and client we add this script -->
+    <!-- as the script runs first so it does not get the below html element that is why we use defer so that the script will run after all the rest html is executed -->
+    <!-- with the help of defer our script become seperate and when our dom loads then the script runs -->
+    <script defer src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script defer src="js/client.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav>
+        <img class="logo" src="chat.png" alt="">
+        <h1>Welcome to iDiscuss Chat App</h1>
+    </nav>
+
+    <div class="content">
+        <div class="container">
+            <!-- all the live chats are added here through client javascript -->
+    
+            <!-- <div class="message right">Harry: Hey how are you?</div> -->
+            <!-- <div class="message left">Rohan: Bhai I am fine. How about you</div> -->
+        </div>
+    
+        <div class="online-box">
+            <h2>Online</h2>
+            <!-- all online users will be shown here -->
+        </div>
+
+    </div>
+
+    <div class="send">
+        <form action="#" id="send-container">
+            <input type="text" name="messageInp" id="messageInp" placeholder=" Type a Message">
+            <button class="btn" type="submit">Send</button>
+        </form>
+    </div>
+</body>
+
+</html>
