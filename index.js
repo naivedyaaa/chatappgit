@@ -45,5 +45,8 @@ io.on("connection", socket=>{
     })
 });
 
+app.get("/",function(req,res){
+    res.sendFile(__dirname+"/index.html")
+})
 app.listen(process.env.PORT || 8000,function(){console.log("Your server is running on Port")})
 
