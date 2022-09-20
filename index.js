@@ -51,7 +51,7 @@ io.on("connection", socket=>{
     socket.on('disconnect', message=>{
         socket.broadcast.emit('user-left', users,usersId,onlineUserNo)
         users.splice(onlineUserNo,1)
-        console(users.splice(onlineUserNo,1))
+        // console(users.splice(onlineUserNo,1))
         usersId.splice(onlineUserNo,1)
         onlineUserNo -= 1
     })
@@ -68,5 +68,5 @@ app.get('/', (req, res) => {
   })
 
 server.listen(port,()=>{
-    console.log(`The application started successfully on port ${port}`)
+    // console.log(`The application started successfully on port ${port}`)
 })
