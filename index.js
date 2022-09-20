@@ -64,7 +64,7 @@ app.use(function(req,res,next){
 })
 
 app.get('/', (req, res) => {
-    res.sendFile('index.html')          //__dirname+
+    res.sendFile(__dirname+"/"+'index.html')          //
   })
 
 server.listen(port,()=>{
