@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&display=swap');
 
 body{
-    width: 100vh;
+    height: 100vh;
     background-image:linear-gradient(rgb(255,255,255), rgb(109, 39, 239));
 }
 
