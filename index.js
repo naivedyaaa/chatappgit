@@ -7,7 +7,8 @@
 
 // we want to use socket.io at 8000 port origin * so that cors do not block the site
 const io = require("socket.io")(process.env.PORT || 8000 , {cors:{origin: '*'}})
-const express=require("express")
+const express=require("express");
+const { dirname } = require("path");
 const app=express()
 
 app.use('/static' , express.static("static"))
@@ -47,5 +48,5 @@ io.on("connection", socket=>{
 });
 
 app.get('/', (req, res) => {
-    res.status(200).render('index.html')
+    res.sendFile(__dirname+'index.html')
   })
