@@ -129,7 +129,7 @@ h1{
     background: white;
     height: 70px;
     width: 70px;
-    background-image: url('/online-logo.png');
+    background-image: url('/static/online-logo.png');
     background-size: contain;
     margin: 0px 24px 19px 0px;
 }
@@ -207,6 +207,9 @@ h1{
     }
     .join-left{
         max-width: 94%;
+    }
+    .message{
+        margin: 8px --17px;
     }
 }
 
