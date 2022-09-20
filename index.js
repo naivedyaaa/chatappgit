@@ -11,7 +11,7 @@ var http = require('http');
 var express = require('express'),
 app = module.exports.app = express();
 
-var server = http.createServer(app);
+// var server = http.createServer(app);
 var io = require('socket.io')(server, {cors:{origin: '*'}});  //pass a http.Server instance
 
 
@@ -29,6 +29,8 @@ var onlineUserNo =0
 // when connection comes(ie harry , rohan ...) to socket.io then "io.on" will listen these
 // and whenever something happens with a particular connection(ie rohan) then what should be done with that particular connection is handled by "socket.on" so if a "new-user-joined" event(note: it is our wish whatever name we want to keep here we kept "new-user-joined") comes to socket.on then the callback function is run which takes the argument "socket"
 io.on("connection", socket=>{
+    // var address = socket.handshake.address;
+    // console.log('New connection from ' + address.address + ':' + address.port);
     // socket.on will receive a message or event from the client javascript 
     // socket.on("hello from client", (...args) =>{ }) here name is argument
     socket.on('new-user-joined', name=>{
