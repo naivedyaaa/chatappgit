@@ -7,7 +7,7 @@
 
 // we want to use socket.io at 8000 port origin * so that cors do not block the site
 const express = require("express");
-const app=request();
+const app=express();
 const io = require("socket.io")( {cors:{origin: '*'}} )
 
 const users = [];
