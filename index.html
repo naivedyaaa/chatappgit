@@ -11,36 +11,57 @@
     <!-- to connect server and client we add this script -->
     <!-- as the script runs first so it does not get the below html element that is why we use defer so that the script will run after all the rest html is executed -->
     <!-- with the help of defer our script become seperate and when our dom loads then the script runs -->
+
+    <!-- No.1 to change  -->
+    <!-- <script defer src="http://localhost:8000/socket.io/socket.io.js"></script> -->
     <script defer src="https://chat-app-naivedya.herokuapp.com/socket.io/socket.io.js"></script>
+
     <script defer src="static/js/client.js"></script>
     <link rel="stylesheet" href="static/css/style.css">
+
+    <script>
+        c=0
+        function online_list_show(){
+            c=c+1
+            onlineBoxVisible = document.getElementById("online-box-visibility");
+            if(c%2==1){
+                onlineBoxVisible.classList.add("display-block")
+            }
+            else{
+                onlineBoxVisible.classList.remove("display-block")
+            }
+        }
+    </script>
 </head>
 
 <body>
     <nav>
         <img class="logo" src="static/chat.png" alt="">
-        <h1>Welcome to iDiscuss Chat App</h1>
+        <h1>Welcome to Let's Discuss App</h1>
     </nav>
 
     <div class="content">
         <div class="container">
             <!-- all the live chats are added here through client javascript -->
-    
+            
             <!-- <div class="message right">Harry: Hey how are you?</div> -->
             <!-- <div class="message left">Rohan: Bhai I am fine. How about you</div> -->
         </div>
     
-        <div class="online-box">
+        <div class="online-box" id="online-box-visibility">
             <h2>Online</h2>
             <!-- all online users will be shown here -->
         </div>
-
+        <div class="online-list">
+            <button class="online-list-btn" onclick="online_list_show()"></button>
+        </div>
+        
     </div>
-
+    
     <div class="send">
         <form action="#" id="send-container">
             <input type="text" name="messageInp" id="messageInp" placeholder=" Type a Message">
-            <button class="btn" type="submit">Send</button>
+            <button class="btn" type="submit" >Send</button>
         </form>
     </div>
 </body>

@@ -4,6 +4,9 @@
 
 
 // to use server's socket in this client javascript
+
+// No. 2 to change 
+// const socket = io("http://localhost:8000")
 const socket = io("https://chat-app-naivedya.herokuapp.com/")
 
 // these we are using of our html (Getting DOM elements in respective js variable)
