@@ -6,11 +6,11 @@
 // Node server which will handel socket io connections
 
 // we want to use socket.io at 8000 port origin * so that cors do not block the site
-const io = require("socket.io")(process.env.PORT || 8000 , {cors:{origin: '*'}})
+const io = require("socket.io")(process.env.PORT, {cors:{origin: '*'}})
 const express=require("express");
 const { dirname } = require("path");
 const app=express()
-const port=process.env.PORT || 8000
+const port=process.env.PORT
 
 app.use('/static' , express.static("static"))
 const users = [];
