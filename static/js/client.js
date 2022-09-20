@@ -13,7 +13,7 @@ const messageInput = document.getElementById("messageInp")
 const messageContainer= document.querySelector(".container")
 const onlineContainer = document.querySelector(".online-box")
 
-var audio = new Audio('ting.mp3')
+var audio = new Audio('static/ting.mp3')
 
 //function(named append) to add message in the box (Note: strings are written inside inverted commas and variables are not)
 const append= (message, position, type)=>{
