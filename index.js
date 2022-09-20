@@ -47,5 +47,5 @@ io.on("connection", socket=>{
 });
 
 app.get('/', (req, res) => {
-    res.send('index.html')
+    res.status(200).render('index.html')
   })
