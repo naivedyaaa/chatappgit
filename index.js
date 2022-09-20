@@ -6,11 +6,20 @@
 // Node server which will handel socket io connections
 
 // we want to use socket.io at 8000 port origin * so that cors do not block the site
-const io = require("socket.io")(process.env.PORT, {cors:{origin: '*'}})
-const express=require("express");
+
+var http = require('http');
+var express = require('express'),
+app = module.exports.app = express();
+
+var server = http.createServer(app);
+var io = require('socket.io')(server, {cors:{origin: '*'}});  //pass a http.Server instance
+
+
+// const express=require("express");
+// const app = express();
+const port=(process.env.PORT || 8000 )
+// const io = require("socket.io").listen(app)               // (port, {cors:{origin: '*'}})
 const { dirname } = require("path");
-const app=express()
-const port=process.env.PORT
 
 app.use('/static' , express.static("static"))
 const users = [];
@@ -48,10 +57,16 @@ io.on("connection", socket=>{
     })
 });
 
+app.use(function(req,res,next){
+    res.header("Access-Control-Allow-Origin","*");
+    res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept")
+    next();
+})
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname+'index.html')
   })
 
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log(`The application started successfully on port ${port}`)
 })
