@@ -1,20 +1,16 @@
 {
-  "name": "chat-app",
+  "name": "nodeserver",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a node server for our iChat application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node nodeServer/app.js"
+    "start": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/naivedyaaa/chatappgit.git"
-  },
-  "author": "",
+  "author": "naivedya",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/naivedyaaa/chatappgit/issues"
-  },
-  "homepage": "https://github.com/naivedyaaa/chatappgit#readme"
+  "dependencies": {
+    "nodemon": "^2.0.19",
+    "socket.io": "^4.5.1"
+  }
 }
