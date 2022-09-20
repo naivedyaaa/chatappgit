@@ -6,7 +6,9 @@
 // Node server which will handel socket io connections
 
 // we want to use socket.io at 8000 port origin * so that cors do not block the site
-const io = require("socket.io")( process.env.PORT || 8000, {cors:{origin: '*'}} )
+const express = require("express");
+const app=request();
+const io = require("socket.io")( {cors:{origin: '*'}} )
 
 const users = [];
 const usersId = [];
@@ -42,4 +44,6 @@ io.on("connection", socket=>{
         onlineUserNo -= 1
     })
 });
+
+app.listen(process.env.PORT || 8000,function(){console.log("Your server is running on Port")})
 
