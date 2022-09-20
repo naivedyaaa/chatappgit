@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Bhai+2&display=swap');
 
 body{
+    width: 100vh;
     background-image:linear-gradient(rgb(255,255,255), rgb(109, 39, 239));
 }
 
@@ -209,7 +210,11 @@ h1{
         max-width: 94%;
     }
     .message{
-        margin: 8px --17px;
+        margin: 8px -17px;
+        padding: 7px;
+    }
+    .message p{
+        margin: 0px 0px -8px 0px;
     }
 }
 
