@@ -10,6 +10,7 @@ const io = require("socket.io")(process.env.PORT || 8000 , {cors:{origin: '*'}})
 const express=require("express");
 const { dirname } = require("path");
 const app=express()
+const port=process.env.PORT || 8000
 
 app.use('/static' , express.static("static"))
 const users = [];
@@ -50,3 +51,7 @@ io.on("connection", socket=>{
 app.get('/', (req, res) => {
     res.sendFile(__dirname+'index.html')
   })
+
+app.listen(port,()=>{
+    console.log(`The application started successfully on port ${port}`)
+})
