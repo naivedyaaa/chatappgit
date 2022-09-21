@@ -68,17 +68,6 @@ const onlineRemove=(userNameArray,userIdArray,onlineUserNo)=>{
     var name = document.getElementById(userIdArray[onlineUserNo-1])
     onlineContainer.removeChild(name)
 }
-//adding event listner in form for submission
-form.addEventListener('submit',(e)=>{
-    //to prevent from reload we write
-    e.preventDefault();
-    const message= messageInput.value;
-    if(message.trim() != ''){
-        append(`${message}`, 'right','message-sent')
-        socket.emit('send', message)
-        messageInput.value =""
-    }
-})
 
 function userentry(){
     for(;;){
@@ -95,6 +84,23 @@ function userentry(){
         }
     }
 }
+
+
+//adding event listner in form for submission
+form.addEventListener('submit',(e)=>{
+    //to prevent from reload we write
+    e.preventDefault();
+    const message= messageInput.value;
+    if(message.trim() != ''){
+        if(users[usersId.indexOf(socket.id)]=="undefined"){
+            userentry();
+        }
+        append(`${message}`, 'right','message-sent')
+        socket.emit('send', message)
+        messageInput.value =""
+    }
+})
+
 // now as soon as we enter the name we will emit(or send) a "new-user-joined" event to the server javascript with the argument "name"
 socket.emit('new-user-joined',name)
 
