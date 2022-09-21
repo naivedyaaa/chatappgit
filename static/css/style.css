@@ -222,13 +222,25 @@ h1{
     .message p{
         margin: 0px 0px -8px 0px;
     }
+    h1{
+        margin: 25px 0px;
+    }
+    .logo{
+        margin: 17px auto;
+    }
+    .online-list-btn{
+        position: fixed;
+        top: 13px;
+        right: -12px;
+    }
+    
+    .content{
+        max-height: 67vh; ;
+    }
 }
 
 /* for phone  */
 @media screen and (max-width:452px) {
-    .content{
-        max-height: 67vh; ;
-    }
     .message{
         padding: 2px 0px 0px 9px
     }
@@ -236,11 +248,6 @@ h1{
         background-size: cover;
         background-position: center;
         width: 80%;
-    }
-    .online-list-btn{
-        position: fixed;
-        top: 6px;
-        right: -12px;
     }
 }
 
