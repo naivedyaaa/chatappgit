@@ -253,6 +253,12 @@ h1{
     .logo {
         margin: 17px 9px;
     }
+    .message h3{
+        margin: -5px 11px -3px 0px;
+    }
+    .message p {
+        margin: 0px 0px -1px 0px;
+    }
 }
 
 /* for phone  */
