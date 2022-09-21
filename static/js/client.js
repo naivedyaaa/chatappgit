@@ -4,8 +4,6 @@
 
 
 // to use server's socket in this client javascript
-
-// No. 2 to change 
 // const socket = io("http://localhost:8000")
 const socket = io("https://chat-app-naivedya.herokuapp.com/")
 
@@ -84,12 +82,6 @@ form.addEventListener('submit',(e)=>{
 for(;;){
     var name = prompt('Enter Your Name To Join')
     if(name!='' && name!= 'null'){
-        break
-    }
-}
-for(;;){
-    var password = prompt('Enter The Password')
-    if(password=="letustalk"){
         break
     }
 }
