@@ -69,19 +69,17 @@ const onlineRemove=(userNameArray,userIdArray,onlineUserNo)=>{
     onlineContainer.removeChild(name)
 }
 
-function userentry(){
-    for(;;){
-        var name = prompt('Enter Your Name To Join')
-        if(name!='' && name!= 'null'){
-            break
-        }
+for(;;){
+    var name = prompt('Enter Your Name To Join')
+    if(name!='' && name!= 'null'){
+        break
     }
+}
     
-    for(;;){
-        var passcode = prompt('Enter The Passcode')
-        if(passcode=="letustalk"){
-            break;
-        }
+for(;;){
+    var passcode = prompt('Enter The Passcode')
+    if(passcode=="letustalk"){
+        break;
     }
 }
 
@@ -122,5 +120,3 @@ socket.on('user-left', (userNameArray,userIdArray,onlineUserNo)=>{
     append(`${userNameArray[onlineUserNo-1]} left the chat`, 'center','join-left')
     onlineRemove(userNameArray,userIdArray,onlineUserNo)
 })
-
-userentry();
