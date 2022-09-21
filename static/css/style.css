@@ -182,6 +182,7 @@ h1{
 @media screen and (max-width:1000px) {
     .container{
         margin: 10px auto;
+        width: 80%;
     }
     .content {
         display: flex;
@@ -247,6 +248,9 @@ h1{
         background-size: cover;
         background-position: center;
         width: 80%;
+    }
+    .logo {
+        margin: 17px 9px;
     }
 }
 
