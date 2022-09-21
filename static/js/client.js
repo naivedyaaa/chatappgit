@@ -103,7 +103,6 @@ socket.emit('new-user-joined',name)
 socket.on('user-joined', (userNameArray,userIdArray,onlineUserNo)=>{
     append(`${userNameArray[onlineUserNo-1]} joined the chat`,'center','join-left')
     onlineAppend(userNameArray,userIdArray,onlineUserNo)
-    
 })
 
 socket.on('currentOnlineUsers', (userNameArray,userIdArray,onlineUserNo)=>{
