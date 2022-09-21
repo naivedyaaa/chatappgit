@@ -87,6 +87,12 @@ for(;;){
         break
     }
 }
+for(;;){
+    var password = prompt('Enter The Password')
+    if(password=="letustalk"){
+        break
+    }
+}
 // now as soon as we enter the name we will emit(or send) a "new-user-joined" event to the server javascript with the argument "name"
 socket.emit('new-user-joined',name)
 
