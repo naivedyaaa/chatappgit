@@ -178,7 +178,7 @@ h1{
 }
 
 /* Responsive  */
-
+/* for chat list  */
 @media screen and (max-width:1000px) {
     .container{
         margin: 10px auto;
@@ -224,8 +224,35 @@ h1{
     }
 }
 
+/* for phone  */
 @media screen and (max-width:452px) {
     .content{
         max-height: 67vh; ;
     }
+    .message{
+        padding: 2px 0px 0px 9px
+    }
+    .container{
+        background-size: cover;
+        background-position: center;
+        width: 80%;
+    }
+    .online-list-btn{
+        position: fixed;
+        top: 6px;
+        right: -12px;
+    }
 }
+
+/* for phone  */
+/* @media screen and (max-width:356px) {
+
+    .container{
+        background-size: cover;
+        background-position: center;
+        width: 80%;
+    }
+    .message{
+        padding: 2px 0px 0px 9px
+    }
+} */
