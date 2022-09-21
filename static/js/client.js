@@ -92,9 +92,6 @@ form.addEventListener('submit',(e)=>{
     e.preventDefault();
     const message= messageInput.value;
     if(message.trim() != ''){
-        if(users[usersId.indexOf(socket.id)]=="undefined"){
-            userentry();
-        }
         append(`${message}`, 'right','message-sent')
         socket.emit('send', message)
         messageInput.value =""
@@ -106,11 +103,9 @@ socket.emit('new-user-joined',name)
 
 // receive a message from the server ie. when server javascript will send the event 'user joined' with arg as data then socket.on will listen that and perfome this arrow function will be performed(Note: we havent given brackets to "data" but it is an arrow function) 
 socket.on('user-joined', (userNameArray,userIdArray,onlineUserNo)=>{
-    if(userNameArray[onlineUserNo-1]=="undefined"){
-        userentry();
-    }
     append(`${userNameArray[onlineUserNo-1]} joined the chat`,'center','join-left')
     onlineAppend(userNameArray,userIdArray,onlineUserNo)
+    
 })
 
 socket.on('currentOnlineUsers', (userNameArray,userIdArray,onlineUserNo)=>{
