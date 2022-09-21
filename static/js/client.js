@@ -86,13 +86,8 @@ form.addEventListener('submit',(e)=>{
 
 for(;;){
     name = prompt('Enter Your Name To Join')
-    if(name!='' && name!= 'null'){
-        break
-    }
-}
-for(;;){
     passcode = prompt('Enter The Passcode')
-    if(passcode=="letustalk"){
+    if(name!='' && name!= 'null' && passcode=="letustalk"){
         break
     }
 }
