@@ -18,6 +18,9 @@ const onlineContainer = document.querySelector(".online-box")
 
 var audio = new Audio('static/ting.mp3')
 
+var name=""
+var passcode=""
+
 //function(named append) to add message in the box (Note: strings are written inside inverted commas and variables are not)
 const append= (message, position, type)=>{
     const messageElement= document.createElement('div');
@@ -82,13 +85,13 @@ form.addEventListener('submit',(e)=>{
 
 
 for(;;){
-    var name = prompt('Enter Your Name To Join')
+    name = prompt('Enter Your Name To Join')
     if(name!='' && name!= 'null'){
         break
     }
 }
 for(;;){
-    var passcode = prompt('Enter The Passcode')
+    passcode = prompt('Enter The Passcode')
     if(passcode=="letustalk"){
         break
     }
