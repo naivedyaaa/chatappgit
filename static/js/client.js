@@ -68,22 +68,6 @@ const onlineRemove=(userNameArray,userIdArray,onlineUserNo)=>{
     var name = document.getElementById(userIdArray[onlineUserNo-1])
     onlineContainer.removeChild(name)
 }
-
-for(;;){
-    var name = prompt('Enter Your Name To Join')
-    if(name!='' && name!= 'null'){
-        break
-    }
-}
-    
-for(;;){
-    var passcode = prompt('Enter The Passcode')
-    if(passcode=="letustalk"){
-        break;
-    }
-}
-
-
 //adding event listner in form for submission
 form.addEventListener('submit',(e)=>{
     //to prevent from reload we write
@@ -96,6 +80,13 @@ form.addEventListener('submit',(e)=>{
     }
 })
 
+
+for(;;){
+    var name = prompt('Enter Your Name To Join')
+    if(name!='' && name!= 'null'){
+        break
+    }
+}
 // now as soon as we enter the name we will emit(or send) a "new-user-joined" event to the server javascript with the argument "name"
 socket.emit('new-user-joined',name)
 
