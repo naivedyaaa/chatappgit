@@ -7,7 +7,7 @@
 
 // No. 2 to change 
 // const socket = io("http://localhost:8000")
-const socket = io("https://chat-app-naivedya.herokuapp.com/")
+// const socket = io("https://chat-app-naivedya.herokuapp.com/")
 
 // these we are using of our html (Getting DOM elements in respective js variable)
 const form = document.getElementById('send-container')
@@ -84,6 +84,13 @@ form.addEventListener('submit',(e)=>{
 for(;;){
     var name = prompt('Enter Your Name To Join')
     if(name!='' && name!= 'null'){
+        break
+    }
+}
+
+for(;;){
+    var passcode = prompt('Enter The Passcode')
+    if(passcode=="letustalk"){
         break
     }
 }
