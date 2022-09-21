@@ -219,6 +219,7 @@ h1{
         margin: 8px -17px;
         padding: 7px;
         max-width: 70%;
+        font-size:20px;
     }
     .message p{
         margin: 0px 0px -8px 0px;
@@ -242,7 +243,7 @@ h1{
 /* for phone  */
 @media screen and (max-width:452px) {
     .message{
-        padding: 2px 0px 0px 9px
+        padding: 2px 0px 0px 9px;
     }
     .container{
         background-size: cover;
