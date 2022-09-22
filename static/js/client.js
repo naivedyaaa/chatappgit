@@ -124,7 +124,8 @@ if(flagname==1 && flagpass==1){
         onlineRemove(userNameArray,userIdArray,onlineUserNo)
     })
 
-    socket.on("console",(consoleItem)=>{
+    socket.on("console",(consoleItem,consoleItem2)=>{
         console.log(consoleItem);
+        console.log(consoleItem2);
     })
 }
