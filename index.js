@@ -31,21 +31,32 @@ var address;
 // and whenever something happens with a particular connection(ie rohan) then what should be done with that particular connection is handled by "socket.on" so if a "new-user-joined" event(note: it is our wish whatever name we want to keep here we kept "new-user-joined") comes to socket.on then the callback function is run which takes the argument "socket"
 io.on("connection", socket=>{
     address = socket.handshake.address;
-    console.log('New connection from ') //+ address.address + ':' + address.port);
     IPAddress=address.address + ':' + address.port;
 
     // socket.on will receive a message or event from the client javascript 
     // socket.on("hello from client", (...args) =>{ }) here name is argument
     socket.on('new-user-joined', name=>{
+        var IDduplicate=0;
         // console.log("New user",name);
         // when new user joins it will add the user name in users array
-        usersId[onlineUserNo]= IPAddress
-        users[onlineUserNo] = name
-        onlineUserNo += 1
-        // socket.broadcast.emit() functon will emit or send a message(event) to all the client's javascript(except the client that caused it) 'user-joined' with name as argument
-        socket.broadcast.emit('user-joined',users,usersId,onlineUserNo)
-        // socket.emit() will send a message only to the client that caused it
-        socket.emit('currentOnlineUsers',users,usersId,onlineUserNo)
+        for(i=0;i<onlineUserNo;i++){
+            if(usersId[i]==IPAddress){
+                curDuplicateUserName=users[i];
+                IDduplicate=1
+            }
+        }
+        if(IDduplicate==1){
+            
+        }
+        else{
+            usersId[onlineUserNo]= IPAddress
+            users[onlineUserNo] = name
+            onlineUserNo += 1
+            // socket.broadcast.emit() functon will emit or send a message(event) to all the client's javascript(except the client that caused it) 'user-joined' with name as argument
+            socket.broadcast.emit('user-joined',users,usersId,onlineUserNo)
+            // socket.emit() will send a message only to the client that caused it
+            socket.emit('currentOnlineUsers',users,usersId,onlineUserNo)
+        }
     });
     // if socket get an event whose name we kept as 'send' from the client javascript then
     socket.on('send' , message=>{
@@ -54,10 +65,19 @@ io.on("connection", socket=>{
     });
     // when a client diconnects(this event is automatically triggered by socket.io as soon as the client disconnects)
     socket.on('disconnect', message=>{
-        socket.broadcast.emit('user-left', users,usersId,onlineUserNo)
-        users.splice(onlineUserNo,1)
+        for(i=0;i<onlineUserNo;i++){
+            if(usersId[i]==IPAddress){
+                curOnlineUserNo=i;
+            }
+        }
+        socket.broadcast.emit('user-left', users,usersId,curOnlineUserNo);
+        usersId.splice(curOnlineUserNo,1);
+        users.splice(curOnlineUserNo,1);
+
+        // Old Code (below 3 lines)
+        // users.splice(onlineUserNo,1)
         // console(users.splice(onlineUserNo,1))
-        usersId.splice(onlineUserNo,1)
+        // usersId.splice(onlineUserNo,1)
         onlineUserNo -= 1
     })
 });
