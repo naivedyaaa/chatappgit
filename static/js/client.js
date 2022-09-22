@@ -100,6 +100,7 @@ for(;;){
 if(flagname==1 && flagpass==1){
 
     // now as soon as we enter the name we will emit(or send) a "new-user-joined" event to the server javascript with the argument "name"
+    console.log("Name is",name)
     socket.emit('new-user-joined',name)
 
     // receive a message from the server ie. when server javascript will send the event 'user joined' with arg as data then socket.on will listen that and perfome this arrow function will be performed(Note: we havent given brackets to "data" but it is an arrow function) 
