@@ -78,47 +78,46 @@ form.addEventListener('submit',(e)=>{
     }
 })
 
+var flagname;
+var flagpass;
 for(;;){
-    var flagname;
-    var flagpass;
-    for(;;){
-        var name = prompt('Enter Your Name To Join')
-        if(name!='' && name!= 'null'){
-            flagname=1;
-            break
-        }
-    }
-    for(;;){
-        var password = prompt('Enter Your Password')
-        if(password=='p'){
-            flagpass=1;
-            break
-        }
-    }
-    if(flagname==1 && flagpass==1){
-        // now as soon as we enter the name we will emit(or send) a "new-user-joined" event to the server javascript with the argument "name"
-        socket.emit('new-user-joined',name)
+    var name = prompt('Enter Your Name To Join')
+    if(name!='' && name!= 'null'){
+        flagname=1;
         break
     }
 }
+for(;;){
+    var password = prompt('Enter Your Password')
+    if(password=='p'){
+        flagpass=1;
+        break
+    }
+}
+// if both name and password has been entered
+if(flagname==1 && flagpass==1){
 
-// receive a message from the server ie. when server javascript will send the event 'user joined' with arg as data then socket.on will listen that and perfome this arrow function will be performed(Note: we havent given brackets to "data" but it is an arrow function) 
-socket.on('user-joined', (userNameArray,userIdArray,onlineUserNo)=>{
-    append(`${userNameArray[onlineUserNo-1]} joined the chat`,'center','join-left')
-    onlineAppend(userNameArray,userIdArray,onlineUserNo)
-})
+    // now as soon as we enter the name we will emit(or send) a "new-user-joined" event to the server javascript with the argument "name"
+    socket.emit('new-user-joined',name)
 
-socket.on('currentOnlineUsers', (userNameArray,userIdArray,onlineUserNo)=>{
-    onlineAppendAll(userNameArray,userIdArray,onlineUserNo)
-})
-
-
-
-socket.on('recieve', data=>{
-    append(data,'left','message')
-})
-
-socket.on('user-left', (userNameArray,userIdArray,onlineUserNo)=>{
-    append(`${userNameArray[onlineUserNo-1]} left the chat`, 'center','join-left')
-    onlineRemove(userNameArray,userIdArray,onlineUserNo)
-})
+    // receive a message from the server ie. when server javascript will send the event 'user joined' with arg as data then socket.on will listen that and perfome this arrow function will be performed(Note: we havent given brackets to "data" but it is an arrow function) 
+    socket.on('user-joined', (userNameArray,userIdArray,onlineUserNo)=>{
+        append(`${userNameArray[onlineUserNo-1]} joined the chat`,'center','join-left')
+        onlineAppend(userNameArray,userIdArray,onlineUserNo)
+    })
+    
+    socket.on('currentOnlineUsers', (userNameArray,userIdArray,onlineUserNo)=>{
+        onlineAppendAll(userNameArray,userIdArray,onlineUserNo)
+    })
+    
+    
+    
+    socket.on('recieve', data=>{
+        append(data,'left','message')
+    })
+    
+    socket.on('user-left', (userNameArray,userIdArray,onlineUserNo)=>{
+        append(`${userNameArray[onlineUserNo-1]} left the chat`, 'center','join-left')
+        onlineRemove(userNameArray,userIdArray,onlineUserNo)
+    })
+}
