@@ -46,7 +46,7 @@ io.on("connection", socket=>{
             }
         }
         if(IDduplicate==1){
-            socket.emit('No new user')
+            socket.emit('console',"No new user")
         }
         else{
             usersId[onlineUserNo]= IPAddress
@@ -56,7 +56,7 @@ io.on("connection", socket=>{
             socket.broadcast.emit('user-joined',users,usersId,onlineUserNo)
             // socket.emit() will send a message only to the client that caused it
             socket.emit('currentOnlineUsers',users,usersId,onlineUserNo)
-            socket.emit('New user joined')
+            socket.emit('console','New user joined')
         }
     });
     // if socket get an event whose name we kept as 'send' from the client javascript then
