@@ -12,7 +12,7 @@ var express = require('express'),
 app = module.exports.app = express();
 
 var server = http.createServer(app);
-// var io = require('socket.io')(server, {cors:{origin: '*'}});  //pass a http.Server instance
+var io = require('socket.io')(server, {cors:{origin: '*'}});  //pass a http.Server instance
 
 
 // const express=require("express");
