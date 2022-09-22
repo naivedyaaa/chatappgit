@@ -129,6 +129,6 @@ if(flagname==1 && flagpass==1){
         console.log(consoleItem2);
     })
 }
-address = socket.handshake.address;
+var address = socket.handshake.address;
 IPAddress=address.address + ':' + address.port;
 console.log("IPAddress is ",IPAddress)
