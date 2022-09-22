@@ -123,12 +123,4 @@ if(flagname==1 && flagpass==1){
         append(`${userNameArray[onlineUserNo-1]} left the chat`, 'center','join-left')
         onlineRemove(userNameArray,userIdArray,onlineUserNo)
     })
-
-    socket.on("console",(consoleItem,consoleItem2)=>{
-        console.log(consoleItem);
-        console.log(consoleItem2);
-    })
 }
-var address = socket.handshake.address;
-IPAddress=address.address + ':' + address.port;
-console.log("IPAddress is ",IPAddress)
