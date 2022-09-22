@@ -123,4 +123,8 @@ if(flagname==1 && flagpass==1){
         append(`${userNameArray[onlineUserNo-1]} left the chat`, 'center','join-left')
         onlineRemove(userNameArray,userIdArray,onlineUserNo)
     })
+
+    socket.on("console",(consoleItem)=>{
+        console.log(consoleItem);
+    })
 }
