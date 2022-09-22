@@ -31,7 +31,7 @@ var address;
 // and whenever something happens with a particular connection(ie rohan) then what should be done with that particular connection is handled by "socket.on" so if a "new-user-joined" event(note: it is our wish whatever name we want to keep here we kept "new-user-joined") comes to socket.on then the callback function is run which takes the argument "socket"
 io.on("connection", socket=>{
     address = socket.handshake.address;
-    console.log('New connection from ' + address.address + ':' + address.port);
+    console.log('New connection from ') //+ address.address + ':' + address.port);
     IPAddress=address.address + ':' + address.port;
 
     // socket.on will receive a message or event from the client javascript 
