@@ -40,6 +40,9 @@ h1{
     margin-left: 9vh;
     background-image: url(/static/background.jpg);
     background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: center;
 }
 
 .message{

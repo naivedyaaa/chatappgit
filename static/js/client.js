@@ -79,16 +79,18 @@ form.addEventListener('submit',(e)=>{
 })
 
 var flagname;
+var name;
+var password;
 var flagpass;
 for(;;){
-    var name = prompt('Enter Your Name To Join')
+    name = prompt('Enter Your Name To Join')
     if(name!='' && name!= 'null'){
         flagname=1;
         break
     }
 }
 for(;;){
-    var password = prompt('Enter Your Password')
+    password = prompt('Enter Your Password')
     if(password=='p'){
         flagpass=1;
         break
