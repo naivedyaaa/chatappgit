@@ -91,7 +91,7 @@ for(;;){
 }
 for(;;){
     password = prompt('Enter Your Password')
-    if(password=='p'){
+    if(password=='pass'){
         flagpass=1;
         break
     }
