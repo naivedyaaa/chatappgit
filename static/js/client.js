@@ -4,8 +4,8 @@
 
 
 // to use server's socket in this client javascript
-// const socket = io("http://localhost:8000")
-const socket = io("https://chat-app-naivedya.herokuapp.com/")
+const socket = io("http://localhost:8000")
+// const socket = io("https://chat-app-naivedya.herokuapp.com/")
 
 // these we are using of our html (Getting DOM elements in respective js variable)
 const form = document.getElementById('send-container')
@@ -14,7 +14,12 @@ const messageInput = document.getElementById("messageInp")
 const messageContainer= document.querySelector(".container")
 const onlineContainer = document.querySelector(".online-box")
 
-var audio = new Audio('static/ting.mp3')
+let audio = new Audio('static/ting.mp3')
+
+let userNameArray=[]
+let userIdArray=[]
+let onlineUserNo=0
+let myOnlineUserNo=0
 
 //function(named append) to add message in the box (Note: strings are written inside inverted commas and variables are not)
 const append= (message, position, type)=>{
@@ -39,32 +44,30 @@ const append= (message, position, type)=>{
     }
 }
 
-const onlineAppend=(userNameArray,userIdArray,onlineUserNo)=>{
+const onlineListAppend=(userNameToDisplay,userIdArray,onlineUserNo)=>{
     nameElement= document.createElement('div')
-    nameElement.innerHTML =`<svg height="12" width="12"><circle cx="6" cy="6" r="5" fill="green"/> </svg> ${userNameArray[onlineUserNo-1]}`
-    nameElement.setAttribute('id',userIdArray[onlineUserNo-1])
+    nameElement.innerHTML =`<svg height="12" width="12"><circle cx="6" cy="6" r="5" fill="green"/> </svg> ${userNameToDisplay}`
+    nameElement.setAttribute('id',userIdArray[onlineUserNo])
     nameElement.setAttribute('class','onlineUser')
     onlineContainer.append(nameElement)
 }
 
-const onlineAppendAll=(userNameArray,userIdArray,onlineUserNo)=>{
-    nameElement= document.createElement('div')
-    nameElement.innerHTML =`<svg height="12" width="12"><circle cx="6" cy="6" r="5" fill="green"/> </svg> You`
-    nameElement.setAttribute('id',userIdArray[onlineUserNo-1])
-    nameElement.setAttribute('class','onlineUser')
+const onlineListAppendAll=()=>{
+    onlineListAppend("You",userIdArray,onlineUserNo)
     onlineContainer.append(nameElement)
-    for(i=0;i<(onlineUserNo-1);i++){
-        nameElement= document.createElement('div')
-        nameElement.innerHTML =`<svg height="12" width="12"><circle cx="6" cy="6" r="5" fill="green"/> </svg> ${userNameArray[i]}`
-        nameElement.setAttribute('id',userIdArray[i])
-        nameElement.setAttribute('class','onlineUser')
-        onlineContainer.append(nameElement)
+    for(i=0;i<(onlineUserNo);i++){
+        if(userNameArray[i]!=undefined){
+            onlineListAppend(userNameArray[i],userIdArray,i)
+        }
     }
 }
 
-const onlineRemove=(userNameArray,userIdArray,onlineUserNo)=>{
-    var name = document.getElementById(userIdArray[onlineUserNo-1])
-    onlineContainer.removeChild(name)
+const onlineRemove=(onlineUserLeftNo)=>{
+    console.log("entered")
+    let userLeftDiv = document.getElementById(userIdArray[onlineUserLeftNo])
+    console.log(`Entered UserLeftNo=${onlineUserLeftNo}, ID=${userIdArray[onlineUserLeftNo]}, Div=${userLeftDiv}`)
+    onlineContainer.removeChild(userLeftDiv)
+    console.log(userLeftDiv,"user left")
 }
 //adding event listner in form for submission
 form.addEventListener('submit',(e)=>{
@@ -73,18 +76,18 @@ form.addEventListener('submit',(e)=>{
     const message= messageInput.value;
     if(message.trim() != ''){
         append(`${message}`, 'right','message-sent')
-        socket.emit('send', message)
+        socket.emit('send', message,myOnlineUserNo)
         messageInput.value =""
     }
 })
 
-var flagname;
-var name;
-var password;
-var flagpass;
+let flagname;
+let name;
+let password;
+let flagpass;
 for(;;){
     name = prompt('Enter Your Name To Join')
-    if(name!='' && name!= 'null'){
+    if(name!='' && name!= null){
         flagname=1;
         break
     }
@@ -104,23 +107,29 @@ if(flagname==1 && flagpass==1){
     socket.emit('new-user-joined',name)
 
     // receive a message from the server ie. when server javascript will send the event 'user joined' with arg as data then socket.on will listen that and perfome this arrow function will be performed(Note: we havent given brackets to "data" but it is an arrow function) 
-    socket.on('user-joined', (userNameArray,userIdArray,onlineUserNo)=>{
-        append(`${userNameArray[onlineUserNo-1]} joined the chat`,'center','join-left')
-        onlineAppend(userNameArray,userIdArray,onlineUserNo)
+    socket.on('user-joined', (userNameArrayGot,userIdArrayGot,onlineUserNoGot)=>{
+        userNameArray=userNameArrayGot
+        userIdArray=userIdArrayGot
+        onlineUserNo=onlineUserNoGot
+        // onlineUserNo=myOnlineUserNoGot
+        append(`${userNameArray[onlineUserNo]} joined the chat`,'center','join-left')
+        onlineListAppend(userNameArray[onlineUserNo],userIdArray,onlineUserNo)
     })
     
-    socket.on('currentOnlineUsers', (userNameArray,userIdArray,onlineUserNo)=>{
-        onlineAppendAll(userNameArray,userIdArray,onlineUserNo)
+    socket.on('currentOnlineUsers', (userNameArrayGot,userIdArrayGot,onlineUserNoGot)=>{
+        userNameArray=userNameArrayGot
+        userIdArray=userIdArrayGot
+        onlineUserNo=onlineUserNoGot
+        myOnlineUserNo=onlineUserNoGot
+        onlineListAppendAll()
     })
-    
-    
     
     socket.on('recieve', data=>{
         append(data,'left','message')
     })
     
-    socket.on('user-left', (userNameArray,userIdArray,onlineUserNo)=>{
-        append(`${userNameArray[onlineUserNo-1]} left the chat`, 'center','join-left')
-        onlineRemove(userNameArray,userIdArray,onlineUserNo)
+    socket.on('user-left', (onlineUserLeftNo)=>{
+        append(`${userNameArray[onlineUserLeftNo]} left the chat`, 'center','join-left')
+        onlineRemove(onlineUserLeftNo)
     })
 }
