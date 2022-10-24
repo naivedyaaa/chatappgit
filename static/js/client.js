@@ -4,8 +4,8 @@
 
 
 // to use server's socket in this client javascript
-// const socket = io("http://localhost:8000")
-const socket = io("https://chat-app-naivedya.herokuapp.com/")
+const socket = io("http://localhost:8000")
+// const socket = io("https://chat-app-naivedya.herokuapp.com/")
 
 // these we are using of our html (Getting DOM elements in respective js variable)
 const form = document.getElementById('send-container')
@@ -55,17 +55,14 @@ const onlineListAppend=(userNameToDisplay,userIdArray,onlineUserNo)=>{
 const onlineListAppendAll=()=>{
     onlineListAppend("You",userIdArray,onlineUserNo)
     onlineContainer.append(nameElement)
-    for(i=0;i<(onlineUserNo);i++){
-        if(userNameArray[i]!=undefined){
-            onlineListAppend(userNameArray[i],userIdArray,i)
-        }
+    for(i=Object.keys(userIdArray)[0];i<(onlineUserNo);i++){
+        onlineListAppend(userNameArray[i],userIdArray,i)
     }
 }
 
 const onlineRemove=(onlineUserLeftNo)=>{
-    console.log("entered")
     let userLeftDiv = document.getElementById(userIdArray[onlineUserLeftNo])
-    console.log(`Entered UserLeftNo=${onlineUserLeftNo}, ID=${userIdArray[onlineUserLeftNo]}, Div=${userLeftDiv}`)
+    console.log(`User left UserLeftNo=${onlineUserLeftNo}, ID=${userIdArray[onlineUserLeftNo]}, Div=${userLeftDiv}`)
     onlineContainer.removeChild(userLeftDiv)
     console.log(userLeftDiv,"user left")
 }
