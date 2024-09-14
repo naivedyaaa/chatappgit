@@ -3,10 +3,11 @@
 // JS of the main website(where the client will come and connect)
 
 
+
 // to use server's socket in this client javascript
 // const socket = io("http://localhost:8000")
 // const socket = io("https://chat-app-naivedya.herokuapp.com/")
-const socket = io("https://chat-tpn5.onrender.com")
+const socket = io("https://chat-tpn5.onrender.com", { transports: ['websocket'] })
 
 // these we are using of our html (Getting DOM elements in respective js variable)
 const form = document.getElementById('send-container')

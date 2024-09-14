@@ -57,6 +57,9 @@ io.on("connection", socket=>{
         usersId.splice(onlineUserNo,1)
         onlineUserNo -= 1
     })
+    socket.on('connect', () => {
+        console.log('Connected to the server');
+    });
 });
 
 app.use(function(req,res,next){
