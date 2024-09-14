@@ -6,7 +6,7 @@
 // to use server's socket in this client javascript
 // const socket = io("http://localhost:8000")
 // const socket = io("https://chat-app-naivedya.herokuapp.com/")
-const socket = io("https://chatapp-413k3x07y-naivedya-agarwals-projects.vercel.app/")
+const socket = io("https://chatapp-drab-chi.vercel.app")
 
 // these we are using of our html (Getting DOM elements in respective js variable)
 const form = document.getElementById('send-container')
